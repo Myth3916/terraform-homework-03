@@ -2,27 +2,27 @@ locals {
   # Собираем данные о ВМ из count (web-1, web-2)
   webservers_data = [
     for instance in yandex_compute_instance.web : {
-      name = instance.name
+      name              = instance.name
       network_interface = instance.network_interface
-      fqdn = instance.fqdn
+      fqdn              = instance.fqdn
     }
   ]
 
   # Собираем данные о ВМ из for_each (main, replica)
   databases_data = [
     for instance in yandex_compute_instance.db : {
-      name = instance.name
+      name              = instance.name
       network_interface = instance.network_interface
-      fqdn = instance.fqdn
+      fqdn              = instance.fqdn
     }
   ]
 
   # Собираем данные о ВМ storage
   storage_data = [
     {
-      name = yandex_compute_instance.storage.name
+      name              = yandex_compute_instance.storage.name
       network_interface = yandex_compute_instance.storage.network_interface
-      fqdn = yandex_compute_instance.storage.fqdn
+      fqdn              = yandex_compute_instance.storage.fqdn
     }
   ]
 }

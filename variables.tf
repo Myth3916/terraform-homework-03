@@ -40,3 +40,15 @@ variable "each_vm" {
     disk_volume = number
   }))
 }
+
+variable "platform_id" {
+  description = "Platform type for VMs"
+  type        = string
+  default     = "standard-v3"
+}
+
+variable "zone" {
+  description = "Zone for VMs"
+  type        = string
+  default     = "ru-central1-a"
+}

@@ -1,10 +1,10 @@
 resource "yandex_compute_instance" "web" {
   count = 2
 
-  name               = "web-${count.index + 1}"
-  platform_id        = "standard-v3"
-  zone               = "ru-central1-a"
-  
+  name        = "web-${count.index + 1}"
+  platform_id = "standard-v3"
+  zone        = "ru-central1-a"
+
   scheduling_policy {
     preemptible = true
   }
@@ -16,14 +16,14 @@ resource "yandex_compute_instance" "web" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd8kdq6d0p8sij7h5qe3"
+      image_id = data.yandex_compute_image.ubuntu.id # ✅ Вместо хардкода
       size     = 10
     }
   }
 
   network_interface {
     subnet_id          = yandex_vpc_subnet.develop.id
-    nat                = false  # ← было true
+    nat                = false # ← было true
     security_group_ids = [yandex_vpc_security_group.example.id]
   }
 

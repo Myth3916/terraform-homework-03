@@ -25,7 +25,7 @@ resource "yandex_compute_instance" "storage" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd8kdq6d0p8sij7h5qe3"
+      image_id = data.yandex_compute_image.ubuntu.id # ✅ Вместо хардкода
       size     = 10
     }
   }
